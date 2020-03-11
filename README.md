@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	_ := log.InitWithFile("log.yaml")
+	_ := log.InitWithFile("log.yaml", "yaml")
 
 	for i := 0; i < 1; i++ {
 		log.Infof("Hi %s, system is starting up ...", "paas-bot")
@@ -59,14 +59,15 @@ func main() {
 log.yaml file content：
 
 ```yaml
-writers: file,stdout
-logger_level: DEBUG
-logger_file: logs/log.log
-log_format_text: false
-rollingPolicy: size # size, daily
-log_rotate_date: 1
-log_rotate_size: 1
-log_backup_count: 7
+log:
+  writers: file,stdout
+  logger_level: DEBUG
+  logger_file: logs/log.log
+  log_format_text: false
+  rollingPolicy: size # size, daily
+  log_rotate_date: 1
+  log_rotate_size: 1
+  log_backup_count: 7
 ```
 
 ## Log parameters

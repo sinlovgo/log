@@ -2,14 +2,14 @@ package log
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/sinlovgo/log/lager"
-	"gopkg.in/yaml.v2"
+	"github.com/spf13/viper"
 )
 
 // constant values for logrotate parameters
@@ -145,23 +145,49 @@ func createLogFile(localPath, outputpath string) {
 }
 
 // readPassLagerConfigFile is unmarshal the paas lager configuration file(lager.yaml)
-func InitWithFile(lagerFile string) error {
+func InitWithFile(lagerFile, fileType string) error {
 	if lagerFile == "" {
 		log.Printf("log config file is empty, use default config: `%s`\n", marshalDefinition())
 		return Init()
 	}
 
-	passLagerDef := PassLagerCfg{}
-	yamlFile, err := ioutil.ReadFile(lagerFile)
-	if err != nil {
-		log.Printf("yamlFile.Get err   #%v, use default config: `%s`\n", err, marshalDefinition())
-		return Init()
+	if fileType == "" {
+		fileType = "yaml"
 	}
-
-	err = yaml.Unmarshal(yamlFile, &passLagerDef)
-	if err != nil {
-		log.Printf("Unmarshal: %v, use default config: `%s`\n", err, marshalDefinition())
-		return Init()
+	viper.SetConfigType(fileType)
+	viper.SetConfigFile(lagerFile)
+	if err := viper.ReadInConfig(); err != nil {
+		return fmt.Errorf("InitWithFile err: %v", err)
+	}
+	writers := viper.GetString("log.writers")
+	if writers == "" {
+		return fmt.Errorf("config %v not set", "writers")
+	}
+	loggerLevel := viper.GetString("log.logger_level")
+	if loggerLevel == "" {
+		return fmt.Errorf("config %v not set", "logger_level")
+	}
+	loggerFile := viper.GetString("log.logger_file")
+	if loggerFile == "" {
+		return fmt.Errorf("config %v not set", "logger_file")
+	}
+	logFormatText := viper.GetBool("log.log_format_text")
+	rollingPolicy := viper.GetString("log.rollingPolicy")
+	if rollingPolicy != "size" && rollingPolicy != "daily" {
+		return fmt.Errorf("config %v must set by size or daily", "rollingPolicy")
+	}
+	logRotateDate := viper.GetInt("log.log_rotate_date")
+	logRotateSize := viper.GetInt("log.log_rotate_size")
+	logBackupCount := viper.GetInt("log.log_backup_count")
+	passLagerDef := PassLagerCfg{
+		Writers:        writers,
+		LoggerLevel:    loggerLevel,
+		LoggerFile:     loggerFile,
+		LogFormatText:  logFormatText,
+		RollingPolicy:  rollingPolicy,
+		LogRotateDate:  logRotateDate,
+		LogRotateSize:  logRotateSize,
+		LogBackupCount: logBackupCount,
 	}
 
 	PassLagerDefinition = &passLagerDef
