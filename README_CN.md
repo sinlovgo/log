@@ -57,7 +57,7 @@ log.yaml文件为：
 log:
   writers: file,stdout
   logger_level: DEBUG
-  logger_file: logs/log.log
+  logger_file: logs/log.log # 如果没设置，将使用环境变量 FRAME_HOME 设置的值，再或者默认值 log/frame.log
   log_format_text: false
   rollingPolicy: size # size, daily
   log_rotate_date: 1

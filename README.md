@@ -62,7 +62,7 @@ log.yaml file content：
 log:
   writers: file,stdout
   logger_level: DEBUG
-  logger_file: logs/log.log
+  logger_file: logs/log.log # if not set use FRAME_HOME env to replace or use default log/frame.log
   log_format_text: false
   rollingPolicy: size # size, daily
   log_rotate_date: 1

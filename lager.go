@@ -80,8 +80,8 @@ func newLog(lag *Lager) lager.Logger {
 		createLogFile("", lag.LoggerFile)
 		logFilePath = filepath.Join("", lag.LoggerFile)
 	} else {
-		createLogFile(os.Getenv("CHASSIS_HOME"), lag.LoggerFile)
-		logFilePath = filepath.Join(os.Getenv("CHASSIS_HOME"), lag.LoggerFile)
+		createLogFile(os.Getenv("FRAME_HOME"), lag.LoggerFile)
+		logFilePath = filepath.Join(os.Getenv("FRAME_HOME"), lag.LoggerFile)
 	}
 	writers := strings.Split(strings.TrimSpace(lag.Writers), ",")
 	if len(strings.TrimSpace(lag.Writers)) == 0 {
@@ -105,7 +105,7 @@ func checkPassLagerDefinition(lag *Lager) {
 	}
 
 	if lag.LoggerFile == "" {
-		lag.LoggerFile = "log/chassis.log"
+		lag.LoggerFile = "log/frame.log"
 	}
 
 	if lag.RollingPolicy == "" {
@@ -203,7 +203,7 @@ func DefaultLagerDefinition() *PassLagerCfg {
 	cfg := PassLagerCfg{
 		Writers:        "stdout,file",
 		LoggerLevel:    "DEBUG",
-		LoggerFile:     "logs/chassis.log",
+		LoggerFile:     "logs/frame.log",
 		LogFormatText:  false,
 		RollingPolicy:  RollingPolicySize,
 		LogRotateDate:  1,

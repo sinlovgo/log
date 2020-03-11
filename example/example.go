@@ -20,7 +20,7 @@ func main() {
 	}
 
 	logFormat := viper.GetBool("log.log_format_text")
-	fmt.Printf("logFormat: %v\n", logFormat)
+	//fmt.Printf("logFormat: %v\n", logFormat)
 	passLagerCfg := log.PassLagerCfg{
 		Writers:        viper.GetString("log.writers"),
 		LoggerLevel:    viper.GetString("log.logger_level"),
