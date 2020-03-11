@@ -1,4 +1,4 @@
-## 简介
+## Introduction
 
 The log package refers to  [lexkong/log](https://github.com/lexkong/log), and some convenience changes
 The function is exactly the same, because the original author is no longer maintained and does not support `go mod`
@@ -14,7 +14,7 @@ The log packages commonly used when develop by Go:
 This log package summarizes the requirements commonly used in enterprise development, and integrates these functions in a log package. 
 After testing, the performance of the log package can fully meet the needs of enterprise-level production.
 
-## 使用方法
+## Instructions
 
 Before using the log package, you need to initialize the log package. 
 The initialization functions are:`InitWithConfig()`, `InitWithFile()`
