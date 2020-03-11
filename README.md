@@ -1,3 +1,6 @@
+[![TravisBuildStatus](https://api.travis-ci.org/sinlovgo/log.svg?branch=master)](https://travis-ci.org/sinlovgo/log)
+[![GoDoc](https://godoc.org/github.com/sinlovgo/log?status.png)](https://godoc.org/github.com/sinlovgo/log/)
+[![GoReportCard](https://goreportcard.com/badge/github.com/sinlovgo/log)](https://goreportcard.com/report/github.com/sinlovgo/log)
 ## Introduction
 
 The log package refers to  [lexkong/log](https://github.com/lexkong/log), and some convenience changes
@@ -15,6 +18,14 @@ This log package summarizes the requirements commonly used in enterprise develop
 After testing, the performance of the log package can fully meet the needs of enterprise-level production.
 
 ## Instructions
+
+```bash
+# in go mod project
+# see last version
+$ go list -v -m -versions github.com/sinlovgo/log
+# like
+$ go mod edit -require='github.com/sinlovgo/log@v1.0.0'
+```
 
 Before using the log package, you need to initialize the log package. 
 The initialization functions are:`InitWithConfig()`, `InitWithFile()`
