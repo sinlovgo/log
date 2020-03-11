@@ -1,12 +1,12 @@
-package lager_test
+package lager_test_test
 
 import (
 	"errors"
 	"fmt"
 	"github.com/sinlovgo/log/lager"
+	"github.com/sinlovgo/log/lager/lagertest"
 	"strconv"
 	"time"
-	"github.com/sinlovgo/log/lagertest"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

@@ -1,8 +1,8 @@
-package lager_test
+package lager_test_test
 
 import (
-	"github.com/sinlovgo/log"
-	"github.com/sinlovgo/log/lagertest"
+	"github.com/sinlovgo/log/lager"
+	"github.com/sinlovgo/log/lager/lagertest"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

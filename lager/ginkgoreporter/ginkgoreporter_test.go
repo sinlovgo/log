@@ -3,9 +3,9 @@ package ginkgoreporter_test
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/sinlovgo/log/lager"
 	"time"
 
-	"github.com/sinlovgo/log"
 	"github.com/sinlovgo/log/chug"
 	. "github.com/sinlovgo/log/ginkgoreporter"
 

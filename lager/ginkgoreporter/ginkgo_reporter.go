@@ -2,10 +2,10 @@ package ginkgoreporter
 
 import (
 	"fmt"
+	"github.com/sinlovgo/log/lager"
 	"io"
 	"time"
 
-	"github.com/sinlovgo/log"
 	"github.com/onsi/ginkgo/config"
 	"github.com/onsi/ginkgo/types"
 )
@@ -50,7 +50,7 @@ type SetupSummary struct {
 //New is a function which returns GinkoReporter object
 func New(writer io.Writer) *GinkgoReporter {
 	logger := lager.NewLogger("ginkgo")
-	logger.RegisterSink(lager.NewWriterSink(writer, lager.DEBUG))
+	logger.RegisterSink(lager.NewWriterSink("default", writer, lager.DEBUG))
 	return &GinkgoReporter{
 		writer: writer,
 		logger: logger,
